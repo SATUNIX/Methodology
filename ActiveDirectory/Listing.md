@@ -7,7 +7,7 @@ Please refer to the following for more info on each method:
 - MITRE ATTACK AND DEFEND
 - Hacktricks
 - GTFOBins
-- 
+- (check the main resources document for more)
 ---
 
 # **🛠 Step 1: Reconnaissance & Information Gathering**
