@@ -1,4 +1,4 @@
-# **Comprehensive Web Application Penetration Testing Methodology**
+# **Basic Web Application Penetration Testing Methodology**
 
 ## **Scenario:**
 You are conducting a full web application penetration test with minimal initial information (e.g., a domain or IP). This guide includes **multiple redundant techniques** for each step and maps to **MITRE ATT&CK Techniques (TTPs)** where applicable.
