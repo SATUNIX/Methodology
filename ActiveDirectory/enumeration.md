@@ -130,4 +130,166 @@ This document outlines **enumeration techniques for Active Directory (AD) penetr
 - **Techniques:**
   - `Get-NetGPOGroup` (Enumerate GPO groups)
   - `gpresult /Scope Computer /v` (Extract applied GPO settings)
+ 
+
+---
+
+Domain enum:
+
+# **Active Directory Domain Enumeration from a Domain Controller (DC) IP**
+
+## **Scenario:**
+This document outlines **techniques for extracting domain information when only given the IP address of a Domain Controller (DC)**. These methods leverage **DNS, NetBIOS, SMB, LDAP, Kerberos, and other AD-related services** to determine the **domain name, structure, and key assets**.
+
+### **References for Further Study:**
+- **MITRE ATT&CK – Discovery Techniques (T1018, T1087, T1482, T1590)**
+- **Active Directory Enumeration Techniques (BloodHound, CrackMapExec, Impacket)**
+- **Windows Internals for Active Directory Reconnaissance**
+
+---
+
+# **🛠 Methods to Enumerate the Domain from a DC IP**
+
+## **1. Reverse Lookup the IP for the Domain Name**
+- **Why?** The DC's hostname typically contains the domain name.
+- **Techniques:**
+  - **Windows:**  
+    ```powershell
+    nslookup <DC_IP>
+    ```
+  - **Linux/macOS:**  
+    ```bash
+    dig -x <DC_IP>
+    ```
+  - **Alternative Methods:**
+    - `host <DC_IP>` (Linux/macOS)
+    - `nmblookup -A <DC_IP>` (NetBIOS lookup)
+
+---
+
+## **2. Enumerate NetBIOS Name Information**
+- **Why?** Many AD environments expose domain details via NetBIOS.
+- **Techniques:**
+  - **NetBIOS Name Query:**  
+    ```bash
+    nmblookup -A <DC_IP>
+    ```
+  - **Extract NetBIOS info using nbtscan:**  
+    ```bash
+    nbtscan -r <DC_IP>/24
+    ```
+  - **List NetBIOS details with smbclient:**  
+    ```bash
+    smbclient -L //<DC_IP> -N
+    ```
+  - **Use CrackMapExec for NetBIOS and SMB discovery:**  
+    ```bash
+    cme smb <DC_IP> --shares
+    ```
+
+---
+
+## **3. Discover the Domain Name via LDAP**
+- **Why?** The domain controller typically allows **anonymous LDAP queries**.
+- **Techniques:**
+  - **Query LDAP BaseDN for domain details:**
+    ```bash
+    ldapsearch -x -H ldap://<DC_IP> -s base namingContexts
+    ```
+  - **Check for available LDAP objects:**  
+    ```bash
+    ldapsearch -x -H ldap://<DC_IP> -b "DC=company,DC=com"
+    ```
+  - **Use CrackMapExec to enumerate LDAP:**  
+    ```bash
+    cme ldap <DC_IP> -u '' -p '' --users
+    ```
+
+---
+
+## **4. Enumerate Active Directory via SMB**
+- **Why?** If SMB is open, it may reveal the domain name and other assets.
+- **Techniques:**
+  - **Check for available SMB shares:**  
+    ```bash
+    smbclient -L //<DC_IP> -N
+    ```
+  - **Use rpcclient to list domain details:**  
+    ```bash
+    rpcclient -U "" <DC_IP>
+    > enumdomains
+    > querydominfo
+    ```
+  - **Alternative Methods:**
+    - `crackmapexec smb <DC_IP> -u '' -p '' --shares`
+    - `smbmap -H <DC_IP> -u '' -p ''`
+
+---
+
+## **5. Identify the Kerberos Realm (If Available)**
+- **Why?** Kerberos authentication can reveal the AD domain name.
+- **Techniques:**
+  - **Check if Kerberos is running:**  
+    ```bash
+    nmap -p 88 --script=krb5-enum-users <DC_IP>
+    ```
+  - **Try Kerberos authentication against the DC:**  
+    ```bash
+    kinit -V anonymous@<domain>
+    ```
+  - **Extract domain name using Impacket:**  
+    ```bash
+    GetUserSPNs.py -dc-ip <DC_IP> anonymous
+    ```
+
+---
+
+## **6. Extract DNS Information**
+- **Why?** AD often runs DNS services that expose domain details.
+- **Techniques:**
+  - **Check for DNS records:**  
+    ```bash
+    nslookup -query=SOA <DC_IP>
+    ```
+  - **Perform a zone transfer (if misconfigured):**  
+    ```bash
+    dig axfr @<DC_IP> <domain>
+    ```
+
+---
+
+## **7. Check for Windows-Specific Information**
+- **Why?** Windows environments may expose domain details in system banners.
+- **Techniques:**
+  - **Check system details using SMB:**  
+    ```bash
+    nmap --script smb-os-discovery -p445 <DC_IP>
+    ```
+  - **Extract NetBIOS and domain details via WMI:**  
+    ```powershell
+    wmic /node:<DC_IP> computersystem get domain
+    ```
+
+---
+
+# **📌 Summary of Methods**
+
+| **Method**                  | **Tool/Command**                               | **Purpose** |
+|-----------------------------|-----------------------------------------------|-------------|
+| **Reverse Lookup**          | `nslookup <DC_IP>` / `dig -x <DC_IP>`         | Get domain name from DNS |
+| **NetBIOS Enumeration**     | `nmblookup -A <DC_IP>` / `nbtscan`            | Find domain via NetBIOS |
+| **LDAP Queries**            | `ldapsearch -x -H ldap://<DC_IP>`             | Extract domain name from LDAP |
+| **SMB Enumeration**         | `smbclient -L //<DC_IP> -N`                   | Identify domain via SMB |
+| **Kerberos Discovery**      | `nmap -p 88 --script=krb5-enum-users <DC_IP>` | Identify AD realm |
+| **DNS Query**               | `dig axfr @<DC_IP> <domain>`                  | Extract AD DNS records |
+| **Windows System Query**    | `wmic /node:<DC_IP> computersystem get domain` | Extract domain name from Windows |
+
+---
+
+### **Final Thought:**
+> **“Enumeration is the foundation of a successful Active Directory compromise.”**
+
+This document provides a **structured methodology for domain enumeration** from a **Domain Controller IP**, ensuring comprehensive reconnaissance before exploitation. 🚀
+
+
 
