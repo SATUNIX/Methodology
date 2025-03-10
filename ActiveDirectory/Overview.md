@@ -1,4 +1,4 @@
-# **Comprehensive Active Directory (AD) Penetration Testing Methodology**
+# **Basic Active Directory (AD) Penetration Testing Methodology**
 
 ## **Scenario:**
 You have only the **IP address of the Domain Controller (DC)** and must conduct a full Active Directory pentest. This guide includes **multiple alternative techniques for each step**, ensuring redundancy. Each method is mapped to **MITRE ATT&CK Techniques (TTPs)** where applicable.
