@@ -26,10 +26,16 @@ For each methodology, consult the following references:
 - **PayloadsAllTheThings** – Comprehensive payload repository ([github.com/swisskyrepo/PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings))
 - **Offensive Security PWK Labs** – OSCP methodology ([help.offensive-security.com](https://help.offensive-security.com/))
 
+---
 
 I strongly recommend you develop your own methodologies, you will otherwise find yourself stuck. Beyond technical understanding there is the the knowledge of the what and when. (Beyond the 'how'). 
 Only this will develop the best tester out of someone. There is no use in knowing 'how' to do everything if you dont know when and where to do it. 
 (Skids be gone)
 
+---
+
+
 > "Those who know, don't tell; Those who tell, don't know."
+
+
 > "True knowledge or enlightenment is beyond the capacity of words to fully express, and those who truly understand it are aware of its ineffability."
