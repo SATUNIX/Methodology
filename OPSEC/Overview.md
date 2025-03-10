@@ -1,4 +1,4 @@
-# **Advanced OPSEC & Obfuscation for Pentesting**
+# **OPSEC & Obfuscation for Pentesting**
 
 ## **Scenario:**
 In high-stakes penetration testing, **remaining undetectable and untraceable** is crucial. This guide covers **advanced operational security (OPSEC) techniques** at each phase of an engagement. The goal is to **evade detection, minimize forensic traces, and prevent attribution** while executing attacks.
@@ -40,7 +40,7 @@ In high-stakes penetration testing, **remaining undetectable and untraceable** i
 
 ### **2.1 Payload Generation & Obfuscation**
 - **Evasive payloads** (Shellcode injection into legitimate processes, encrypted loaders).
-- **Custom packers & crypters** (Avoid signature-based detection via PE manipulation, RunPE, Gobfuscate).
+- **Custom packers & crypters** (Avoid signature-based detection via PE manipulation, RunPE, Gobfuscate). (make your own packer from scratch and keep it to yourself)
 - **In-memory execution** (Reflective DLL injection, Process Hollowing, Direct Syscalls to evade user-mode hooks).
 - **Stage payloads through legitimate CDNs** (Google Drive, Dropbox, OneDrive, AWS S3 signed URLs).
 - **Signed binaries abuse** (Living-off-the-land techniques: MSBuild, InstallUtil, Regsvr32, etc.).
