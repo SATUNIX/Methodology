@@ -1,7 +1,7 @@
 # **Network Penetration Testing Methodology List**
 
 ## **Scenario:**
-This methodology lists techniques for **Network Penetration Testing**. The structure follows **pentesting steps** with **comprehensive enumeration methods**, covering **every possible attack path**. This document does not include commands, only methodologies. It should be used in conjunction with supporting material for study and research purposes only.
+This methodology lists techniques for **Network Penetration Testing**. The structure follows **pentesting steps** with **enumeration methods**, covering **possible attack paths**. This document does not include commands, only methodologies. It should be used in conjunction with supporting material for study and research purposes only.
 
 ### **References for Further Reading on each method..:**
 - **MITRE ATT&CK**
