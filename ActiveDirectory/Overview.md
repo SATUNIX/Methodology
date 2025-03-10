@@ -161,3 +161,6 @@ You have only the **IP address of the Domain Controller (DC)** and must conduct 
     ntdsutil "ac i ntds" "ifm" "create full c:\ntds" q q
     ```
 
+
+
+---
