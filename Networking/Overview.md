@@ -1,4 +1,4 @@
-# **Comprehensive Network Penetration Testing Methodology**
+# **Basic Network Penetration Testing Methodology**
 
 ## **Scenario:**
 You are conducting a full-scale **network penetration test**, starting with **minimal information (an IP range, single host, or domain)**. This guide outlines multiple methodologies, tools, and **redundant techniques** for each phase, including leveraging **Mythic C2** where applicable.
@@ -209,4 +209,3 @@ These guides are just the foundations and outline, but from this outline you can
 (and many many more methods) 
 ---
 
-This methodology provides a **comprehensive, redundant, and highly detailed** process for conducting a **network penetration test**, incorporating **Mythic C2** for **covert operations**. 🚀 Let me know if you'd like additional refinements!
