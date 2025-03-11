@@ -5,6 +5,8 @@ You are conducting a full web application penetration test with minimal initial 
 
 The overview document provides a high level process of testing but is in no means recommended for every scenario, tools change, patches release. 
 understand how the technologies work, use tools where needed but dont rely on them, better yet, make your own make them better. See listing document and pair the methods in the listings with sources such as Atomic, hacktricks, and PTES for more information.
+
+
 ---
 
 # **🛠 Step 1: Information Gathering (Reconnaissance) (T1595, T1590, T1596)**
