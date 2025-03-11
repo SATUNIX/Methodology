@@ -1,6 +1,11 @@
-# **Pentesting Methodology**
+# **Pentesting Methodology and Notation**
 
-Documented notes, process, and techniques used previously. 
+Documented my notes, process, and techniques used previously. 
+Feel free to follow my process, take my tips, make sure not to use tools listed just because i said so. Dont be a skid. 
+Understand, develop, test, be ethical. Use the listing documents especially just as a process guide to assist and backtrack if you become stuck in tests. 
+
+--- 
+
 
 ## **Overview**
 This repository contains **methodologies** for penetration testing, CTFs HTBs etc across various domains, including **Active Directory, Web Applications, Networks, and more**. The structure of this library ensures that methodologies are organized, and easy to follow.
