@@ -1,5 +1,7 @@
 # **Pentesting Methodology**
 
+Documented notes, process, and techniques used previously. 
+
 ## **Overview**
 This repository contains **methodologies** for penetration testing, CTFs HTBs etc across various domains, including **Active Directory, Web Applications, Networks, and more**. The structure of this library ensures that methodologies are organized, and easy to follow.
 This is broken down into the methods I have used in past for testing and provide an overview to help structure your planning and playbooks. 
@@ -39,3 +41,13 @@ Only this will develop the best tester out of someone. There is no use in knowin
 
 
 > "True knowledge or enlightenment is beyond the capacity of words to fully express, and those who truly understand it are aware of its ineffability."
+
+---
+
+While tools are an essential part of penetration testing, they should never be relied upon blindly. Understanding how the underlying technology works is critical, as tools evolve, become obsolete, or may not function as expected in real-world scenarios. To stay ahead, you must continuously learn, experiment, and practice—developing your own scripts and techniques rather than depending solely on automation. Throughout this guide, various tools may be listed as examples, but they may not be accurate or relevant at the time of reading. 
+
+It is also encouraged not to just blindly use these command examples on step by step as these examples are just that, an example. The commands and tools listed provide an idea of what the step and objective is, understand the method, the tecnique, and how it intertwines with following methods and steps. Take notes and practice. 
+
+Instead of relying on predefined tools, focus on understanding the documentation, read the PTES, and NIST guides on pentesting, understand the technology and how it can be used, understand the technical details, and step-by-step methods and techniques behind them. Adapt your approach based on the objectives required, ensuring you are not just a tool user but a true security practitioner capable of thinking critically and adapting to new challenges.
+
+
