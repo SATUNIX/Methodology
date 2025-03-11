@@ -285,11 +285,3 @@ This document outlines **techniques for extracting domain information when only 
 | **Windows System Query**    | `wmic /node:<DC_IP> computersystem get domain` | Extract domain name from Windows |
 
 ---
-
-### **Final Thought:**
-> **“Enumeration is the foundation of a successful Active Directory compromise.”**
-
-This document provides a **structured methodology for domain enumeration** from a **Domain Controller IP**, ensuring comprehensive reconnaissance before exploitation. 🚀
-
-
-
