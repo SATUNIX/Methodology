@@ -5,6 +5,9 @@ You are conducting a full-scale **network penetration test**, starting with **mi
 
 Each method is mapped to **MITRE ATT&CK Techniques (TTPs)** where relevant.
 
+The overview document provides a high level process of testing but is in no means recommended for every scenario, tools change, patches release. understand how the technologies work, use tools where needed but dont rely on them, better yet, make your own make them better. See listing document and pair the methods in the listings with sources such as Atomic, hacktricks, and PTES for more information.
+
+
 ---
 
 # **🛠 Step 1: Reconnaissance (Passive & Active) (T1595, T1590, T1596)**
