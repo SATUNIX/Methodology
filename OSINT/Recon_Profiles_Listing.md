@@ -1,7 +1,7 @@
-# 🔍 Passive OSINT & Reconnaissance Methodology
+# 🔍 Red Team: Passive OSINT & Reconnaissance Methods
 
 ## 📘 Scenario:
-This high level methodology outlines **passive, stealth-based OSINT techniques** for reconnaissance and risk profiling of remote organizations. It is used to assess exposure, surface area, and security posture **without triggering detection**, **probing systems**, or **interacting directly with assets**.
+This high level methodology outlines **passive, stealth-based OSINT techniques** for reconnaissance and profiling of remote organizations to asses targets, potential bugs, and further flaws. It is used to assess exposure, surface area, and security posture **without triggering detection**, **probing systems**, or **interacting directly with assets**.
 
 All methods here are compliant with responsible, legal, and authorized reconnaissance. This should be used for **defensive risk assessment**, **red team pre-engagement intel gathering**, or **digital footprint discovery**.
 
