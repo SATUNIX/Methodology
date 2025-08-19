@@ -1,3 +1,7 @@
+---
+title: Documentation
+---
+
 # **Effective Documentation for Penetration Testing**
 
 ## **Introduction**

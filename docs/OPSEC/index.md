@@ -1,3 +1,7 @@
+---
+title: OPSEC
+---
+
 # **OPSEC & Obfuscation for Pentesting**
 
 ## **Scenario:**

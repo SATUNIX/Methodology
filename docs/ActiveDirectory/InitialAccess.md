@@ -1,3 +1,7 @@
+---
+title: Active Directory Pentesting: Initial Access & Credential Attacks
+---
+
 # **Active Directory Pentesting: Initial Access & Credential Attacks**
 
 ## **Scenario:**

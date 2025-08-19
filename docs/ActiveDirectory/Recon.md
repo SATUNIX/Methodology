@@ -1,3 +1,7 @@
+---
+title: Active Directory Reconnaissance & Information Gathering
+---
+
 # **Active Directory Reconnaissance & Information Gathering**
 
 ## **Scenario:**
