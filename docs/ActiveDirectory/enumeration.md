@@ -1,3 +1,7 @@
+---
+title: Active Directory Pentesting: Enumeration (No Credentials / Low-Privileged User)
+---
+
 # **Active Directory Pentesting: Enumeration (No Credentials / Low-Privileged User)**
 
 ## **Scenario:**

@@ -1,3 +1,7 @@
+---
+title: 🔍 Red Team: Passive OSINT & Reconnaissance Methods
+---
+
 # 🔍 Red Team: Passive OSINT & Reconnaissance Methods
 
 ## 📘 Scenario:

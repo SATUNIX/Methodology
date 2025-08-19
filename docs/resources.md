@@ -1,3 +1,7 @@
+---
+title: Resources
+---
+
 # **Pentesting & Red Teaming Documentation Resources**
 
 ## **Table of Contents**

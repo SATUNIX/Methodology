@@ -1,3 +1,7 @@
+---
+title: Active Directory
+---
+
 # **Basic Active Directory (AD) Penetration Testing Methodology**
 
 ## **Scenario:**
